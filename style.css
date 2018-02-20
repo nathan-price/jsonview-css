@@ -1,0 +1,215 @@
+/**
+ * JSONView.css
+ * Custom Stylesheet for the JSONView Chrome extension
+ *
+ * Original by Scott Buchanan <buchanan.sc@gmail.com>
+ * http://wafflesnatcha.github.com
+ * Minor update by Nathan Price
+ */
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: #000;
+  font-family: Menlo, "DejaVu Sans Mono", Monaco, Courier, monospace;
+  font-size: 11px;
+  padding: 30px 30px 20px;
+  position: relative;
+}
+
+#json {
+  position: relative;
+  tab-size: 4;
+  white-space: pre;
+}
+
+.property {
+  color: #994500;
+}
+
+.type-boolean {
+  color: #C005B3;
+}
+
+.type-null {
+  color: #c0c0c0;
+}
+
+.type-number {
+  color: blue;
+}
+
+.type-string {
+  color: #236e25;
+}
+
+.callback-function {
+  color: gray;
+  padding: 4px 0;
+}
+
+.collapsible {  
+  margin: 0 0 0 22px;
+  box-shadow: -33px 0px white,
+      -33px 11px white,
+      -34px 0px lightgray,
+      -34px 11px lightgray;
+}
+
+.hoverable {
+  -webkit-transition: none;
+}
+
+.selected {
+  margin: -1px -2px;
+  outline: 0;
+  padding: 1px 2px;
+}
+
+.collapser {
+  -webkit-user-select: none;
+  color: #777;
+  cursor: pointer;
+  font-weight: bold;
+  left: -22px;
+  margin: 0;
+  opacity: .85;
+  padding: 0;
+  text-align: center;
+  top: 0;
+  user-select: none;
+  width: 22px;
+}
+
+.collapser:hover {
+  color: initial;
+  opacity: 1;
+}
+
+.collapser:after {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAQAAABuBnYAAAAAAXNSR0IArs4c6QAAAEhJREFUCNdjUCpX3o+Aiq4MymLKu+ECGxxYGBgYlPNgAkqmDCCgIKC8DSywnIGJAQKUEsHyugwwIM6ttElxJgMyUApWUGDADgA9dRkGSwiAtgAAAABJRU5ErkJggg==");
+  background-position: center;
+  background-repeat: no-repeat;
+  content: ' ';
+  display: block;
+  padding: 0;
+  width: 100%;
+}
+
+.collapsed > .collapser:after {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAQAAABuBnYAAAAAAXNSR0IArs4c6QAAAEFJREFUCNdjEHNlYGFABuL7xTdImDIwIQuA4HJxXVQBEJwpoYAqsEksGC4gtk0iUZwbpmW3eJ6AANxQiXJxMWRbATloFzg5l+EqAAAAAElFTkSuQmCC");
+}
+
+.ellipsis:after {
+  content: " … ";
+}
+
+.status,
+.toolbox {
+  background: none;
+  border-radius: 0;
+  border: 0;
+  bottom: auto;
+  box-sizing: border-box;
+  color: #fff;
+  font: inherit;
+  height: auto;
+  left: auto;
+  line-height: 19px;
+  margin: 0 auto;
+  min-height: 19px;
+  opacity: 1;
+  overflow: hidden;
+  padding: 0 4px;
+  right: auto;
+  text-align: left;
+  text-overflow: ellipsis;
+  top: 0;
+  white-space: nowrap;
+  z-index: 100;
+}
+
+.status {
+  background-color: rgba(0,0,0,.8);
+  box-shadow: 0 1px 1px rgba(0,0,0,.2);
+  color: #2f2f2f;
+  left: 0;
+  padding: 0 12px 0 160px;
+  right: 0;
+  width: auto;
+}
+
+.status:not(:empty) {
+  color: #fff;
+}
+
+.toolbox {
+  background-color: rgba(255,255,255,.2);
+  box-shadow: 0 -30px 30px -30px rgba(0,0,0,.2) inset;
+  color: #ddd;
+  left: 0;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.3);
+  z-index: 101;
+}
+
+.toolbox > a,
+.toolbox > img,
+.toolbox > span {
+  box-sizing: border-box;
+  color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  line-height: inherit;
+  padding: 0 3px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.toolbox > a {
+  padding: 0 6px;
+}
+
+.toolbox > img {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACKElEQVRYw+1XMWvCQBT2L2R1q2vHrFmKgU4Zszq6OHQMSIejLq6ZStdOpVOlYykuFRSCmyAWF4duZtGAg5DmwTt5PC/JJY3tUB88kLvce9+9+953Zy2O49pfeu0M4Ggg3S4TbyUuEncU8ybO3eBvpf0EgGDuKJJTrxaAEOJ5Pp8vk2/i4XAYYJK2rIrv+68wt16vQ/hdOYCYGQFxSE6tagB2rLDtdjvbbDYfqrkUnmgDqCfeQIdAIi5ohCcyTl0XgMEJNRgM+C6BC/3E3cShOh6OKY+IuKEDwHJd96HT6TyCQyCW3Ms4XwASUhAyDsSE2LkAut3udUZl2yQflNVCNwkIk4KghrFzldDTSG5m6QIejco8HQBHi/f7/TurtgdlTewNHPteSKKBwRoFAFerC2C3fCHNrup7JF0jowrtQjowGo1e5Mper3dBAex2u0hV3/F4fCW/gTVyHGIV1QEHSkt62sxSRWI25YkchFiSI1ptCOcZBMFMBmg2m3cMwDIFwOEIYI0chFjIEUsLAO99JJmT02q0SyzOE+RIPoAoim75tuCGU7SagSpo053LFoU1PA7GLqcDRFpbKNfcYAy6RVD+lNEBI03JmL5DyW3kTCvrakYLMXax65hrAjxKLMvyuRLCGCWughfl3wMqdVytVl/T6fRpMpncLxaLzxzprv5FpPEeqP0GgD6/gk8JILXvFboQngKAgYT0+OVEQHjoRmkA579m/w7AN03/bMf1yzc0AAAAAElFTkSuQmCC");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  float: left;
+  height: 18px;
+  margin: 0;
+  opacity: .75;
+  overflow: hidden;
+  padding: 0 0 0 20px;
+  width: 0;
+}
+
+.toolbox > span {
+  float: right;
+  font-family: Courier, Monaco, monospace;
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 15px;
+  padding: 0;
+}
+
+.toolbox > a:hover,
+.toolbox > img:hover,
+.toolbox > span:hover {
+  color: #fff;
+  opacity: 1;
+}
+
+.toolbox > a, .toolbox > img, .toolbox > span,
+.collapser,
+.status {
+  -webkit-transition-duration: .12s;
+  -webkit-transition-property: color, opacity;
+}
+
+.toolbox > a:hover, .toolbox > img:hover, .toolbox > span:hover,
+.collapser:hover {
+  -webkit-transition-duration: 0s;
+}
